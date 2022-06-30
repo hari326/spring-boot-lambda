@@ -6,14 +6,14 @@ name: Shiftleft Scan
 jobs:
   scanning:
     env:
-      APP_ID: da669c48148612a2eccf63b51e819c5b942e137bc3c719ba6277578235763e3e
-      REQ_URL_MAP: "${{toJSON('{\"SL_RESULT_API_HOST\":\"https://slresultapi.dev.securin.io/resultapi/v1\"\
-        ,\"SL_API_HOST\":\"https://slapi.dev.securin.io/shiftleftapi\",\"SL_RESULTPARSER_API_HOST\"\
-        :\"https://slresultparserapi.dev.securin.io/resultparserapi/v1\"}')}}"
+      APP_ID: b11dc27f398fe3f347dc464fd5348f584e3c541657119aefbba495aab04e4a3f
+      REQ_URL_MAP: "${{toJSON('{\"SL_RESULT_API_HOST\":\"https://slresultapi.qa.securin.io/resultapi/v1\"\
+        ,\"SL_API_HOST\":\"https://slapi.qa.securin.io/shiftleftapi\",\"SL_RESULTPARSER_API_HOST\"\
+        :\"https://slresultparserapi.qa.securin.io/resultparserapi/v1\"}')}}"
     steps:
     - name: Retrieve Scan Info
       id: auth_token
-      run: "respJson=$(curl --location --request GET 'https://slapi.dev.securin.io/shiftleftapi/scan-info?app_id=${{\
+      run: "respJson=$(curl --location --request GET 'https://slapi.qa.securin.io/shiftleftapi/scan-info?app_id=${{\
         \ env.APP_ID }}'  --header 'Authorization: Bearer ${{secrets.CLI_ACCESS_TOKEN}}'\
         \  --data-raw ' ' )\necho \"::set-output name=authTokenJson::$respJson\""
     - uses: actions/checkout@v2
